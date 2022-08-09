@@ -62,6 +62,12 @@ jobs:
     #     username: ${{ env.DOCKER_USERNAME }}
     #     password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Build Project and Generate Package
+      run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c Release -p:PackageVersion=${{ steps.versioning.outputs.version }} -o ${{ env.DIR }}
+
+    - name: Push Package on GitHub Package Registry
+      run: dotnet nuget push '${{ env.DIR }}/*.nupkg' --api-key ${{ secrets.MY_TOKEN }} --source github --skip-duplicate
+
     - name: Create Release
       if: ${{ !startsWith(github.ref, 'refs/tags/') }}
       uses: actions/create-release@v1
@@ -71,11 +77,3 @@ jobs:
         tag_name: ${{ steps.versioning.outputs.version }}
         release_name: ${{ steps.versioning.outputs.version }}
         prerelease: true
-
-    - name: Build Project and Generate Package
-      run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c Release -p:PackageVersion=${{ steps.versioning.outputs.version }} -o ${{ env.DIR }}
-
-    - name: Push Package on GitHub Package Registry
-      run: dotnet nuget push '${{ env.DIR }}/*.nupkg' --api-key ${{ secrets.MY_TOKEN }} --source github --skip-duplicate
-
-    

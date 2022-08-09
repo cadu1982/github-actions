@@ -15,7 +15,6 @@ jobs:
       USERNAME: cadu1982
       REPO: cadu1982/github-actions
       CAMINHO_PROJETO: ./Groffe.Distancias/Groffe.Distancias.csproj
-      # NUGET_SERVER: https://api.nuget.org/v3/index.json 
       DIR: ${{ github.workspace }}/output
       
     steps:
@@ -42,7 +41,7 @@ jobs:
 
     - name: Push Package on GitHub Package Registry
       run: |
-        dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/OWNER/index.json"
+        dotnet nuget add source --username USERNAME --password ${{ secrets.MY_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/cadu1982/index.json"
         dotnet nuget push '${{ env.DIR }}/*.nupkg' --api-key ${{ secrets.MY_TOKEN }} --source github --skip-duplicate
     
     - name: Create Release
@@ -54,5 +53,3 @@ jobs:
         tag_name: ${{ steps.versioning.outputs.version }}
         release_name: ${{ steps.versioning.outputs.version }}
         prerelease: false
-
-    

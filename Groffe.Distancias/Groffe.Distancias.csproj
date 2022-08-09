@@ -7,9 +7,8 @@
     <Authors>teste</Authors>
     <Company>teste</Company>
     <PackageTags>NuGet;.NET;Classlib;GitHub;Actions</PackageTags>
-    <Description>
-      Biblioteca para conversão de distâncias em Milhas para Km (e vice-versa)
-    </Description>
+    <Description>Biblioteca para conversão de distâncias em Milhas para Km (e vice-versa)</Description>
+    <RepositoryUrl>https://github.com/cadu1982/github-actions</RepositoryUrl
   </PropertyGroup>
 
 </Project>

@@ -3,7 +3,7 @@ name: Release Package
 on:
   pull_request:
     types: 
-      - assigned 
+      - closed 
     branches:
       - master
 
@@ -46,6 +46,6 @@ jobs:
       with:
         tag_name: ${{ steps.versioning.outputs.version }}
         release_name: ${{ steps.versioning.outputs.version }}
-        prerelease: true
+        prerelease: false
 
     

@@ -12,11 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
+      DOCKER_USERNAME: cadu1982
+      REPO: cadu1982/github-actions
       CAMINHO_PROJETO: ./Groffe.Distancias/Groffe.Distancias.csproj
+      # NUGET_SERVER: https://api.nuget.org/v3/index.json 
       DIR: ${{ github.workspace }}/output
-
+      
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
@@ -36,7 +41,7 @@ jobs:
       run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c Release -p:PackageVersion=${{ steps.versioning.outputs.version }} -o ${{ env.DIR }}
 
     - name: Push Package on GitHub Package Registry
-      run: dotnet nuget push '${{ env.DIR }}/*.nupkg' --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGET_SERVER }} --skip-duplicate
+      run: dotnet nuget push '${{ env.DIR }}/*.nupkg' --api-key ${{ secrets.MY_TOKEN }} --source github --skip-duplicate
     
     - name: Create Release
       if: ${{ !startsWith(github.ref, 'refs/tags/') }}

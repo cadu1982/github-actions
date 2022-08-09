@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>teste.github.Distancias</PackageId>
-    <Version>0.0.2</Version>
+    <Version>0.2.2</Version>
     <Authors>teste</Authors>
     <Company>teste</Company>
     <PackageTags>NuGet;.NET;Classlib;GitHub;Actions</PackageTags>
     <Description>Biblioteca para conversão de distâncias em Milhas para Km (e vice-versa)</Description>
-    <RepositoryUrl>https://github.com/cadu1982/github-actions</RepositoryUrl
+    <RepositoryUrl>https://github.com/cadu1982/github-actions</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

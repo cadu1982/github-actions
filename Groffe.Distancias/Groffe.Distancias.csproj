@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>teste.github.Distancias</PackageId>
-    <Version>0.1.2</Version>
+    <Version>0.1.3</Version>
     <Authors>teste</Authors>
     <Company>teste</Company>
     <PackageTags>NuGet;.NET;Classlib;GitHub;Actions</PackageTags>

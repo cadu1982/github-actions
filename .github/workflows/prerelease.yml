@@ -13,7 +13,7 @@ jobs:
     env:
       DOCKER_USERNAME: cadu1982
       REPO: cadu1982/github-actions
-      # CAMINHO_PROJETO: ./Groffe.Distancias/Groffe.Distancias.csproj
+      CAMINHO_PROJETO: ./Groffe.Distancias/Groffe.Distancias.csproj
       # NUGET_SERVER: https://api.nuget.org/v3/index.json 
       # DIR: ${{ github.workspace }}/output
 

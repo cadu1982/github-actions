@@ -1,4 +1,4 @@
-name: Release Package
+name: Release
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  Publish-release:
+  release:
     runs-on: ubuntu-latest
     
     env:

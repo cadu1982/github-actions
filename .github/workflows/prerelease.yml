@@ -1,4 +1,4 @@
-name: Prerelease Package
+name: Prerelease
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  Publish-prerelease:
+  prerelease:
     if: contains(github.head_ref, 'alpha') || contains(github.head_ref, 'beta') || contains(github.head_ref, 'prerelease')
     runs-on: ubuntu-latest
    

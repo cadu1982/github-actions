@@ -1,0 +1,58 @@
+name: Prerelease
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    
+jobs:
+  prerelease:
+    if: contains(github.head_ref, 'alpha') || contains(github.head_ref, 'beta') || contains(github.head_ref, 'prerelease')
+    runs-on: ubuntu-latest
+   
+    env:
+      NUGET_SERVER: https://nuget.pkg.github.com/$GITHUB_REPOSITORY_OWNER/index.json
+      CAMINHO_PROJETO: ./Groffe.Distancias/*.csproj
+      DIR: ${{ github.workspace }}/output
+
+    steps:
+    - name: Checkout Current Repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: Setup .NET 5
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+        source-url: ${{ env.NUGET_SERVER }}
+      env:
+        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              
+    - name: Find the specific suffix to compose the version format
+      uses: ./.github/workflows/script.yml
+    
+    - name: Semantic versioning
+      id: versioning
+      uses: paulhatch/semantic-version@v4.0.2
+      with:
+        tag_prefix: ''
+        major_pattern: "break:"
+        minor_pattern: "feat:"
+        patch_pattern: "fix:"
+        format: "${major}.${minor}.${patch}-${{ steps.get-prerelease-suffix.outputs.prerelease_suffix }}${increment}"
+        
+    - name: Build Project and Generate Package
+      run: dotnet build ${{ env.CAMINHO_PROJETO }} -c Release -p:PackageVersion=${{ steps.versioning.outputs.version }} -o ${{ env.DIR }}
+
+    - name: Push Package on GitHub Package Registry
+      run: dotnet nuget push '${{ env.DIR }}/*.nupkg' --api-key ${{ secrets.GITHUB_TOKEN }} --source ${{ env.NUGET_SERVER }} --skip-duplicate
+    
+    - name: Create Release
+      if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.versioning.outputs.version }}
+        release_name: ${{ steps.versioning.outputs.version }}
+        prerelease: true

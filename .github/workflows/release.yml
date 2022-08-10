@@ -15,7 +15,8 @@ jobs:
       DIR: ${{ github.workspace }}/output
       
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Current Repository
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
     
@@ -23,6 +24,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
+        source-url: ${{ env.NUGET_SERVER }}
+      env:
+        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Semantic versioning
       id: versioning

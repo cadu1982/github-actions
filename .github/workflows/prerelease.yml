@@ -15,7 +15,6 @@ jobs:
       DIR: ${{ github.workspace }}/output
 
     steps:
-
     - name: Checkout Current Repository
       uses: actions/checkout@v3
       with:
@@ -28,9 +27,7 @@ jobs:
         source-url: ${{ env.NUGET_SERVER }}
       env:
         NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
-
-           
+              
     - name: Find the specific suffix to compose the version format
       run: |
         import re

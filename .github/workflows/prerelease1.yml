@@ -29,6 +29,7 @@ jobs:
         NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               
     - name: Find the specific suffix to compose the version format
+      id: version
       uses: ./.github/workflows/script.yml
     
     - name: Semantic versioning
@@ -39,7 +40,8 @@ jobs:
         major_pattern: "break:"
         minor_pattern: "feat:"
         patch_pattern: "fix:"
-        format: "${major}.${minor}.${patch}-${{ steps.get-prerelease-suffix.outputs.prerelease_suffix }}${increment}"
+        # format: "${major}.${minor}.${patch}-${{ steps.get-prerelease-suffix.outputs.prerelease_suffix }}${increment}"
+        format: "${major}.${minor}.${patch}-${{ version.outputs.output1 }}${increment}"
         
     - name: Build Project and Generate Package
       run: dotnet build ${{ env.CAMINHO_PROJETO }} -c Release -p:PackageVersion=${{ steps.versioning.outputs.version }} -o ${{ env.DIR }}

@@ -15,22 +15,19 @@ jobs:
       DIR: ${{ github.workspace }}/output
 
     steps:
-
     - name: Checkout Current Repository
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
     
     - name: Setup .NET 5
-      uses: actions/setup-dotnet@v1
+    - uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
         source-url: ${{ env.NUGET_SERVER }}
       env:
         NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
-
-           
+              
     - name: Find the specific suffix to compose the version format
       run: |
         import re

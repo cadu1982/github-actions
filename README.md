@@ -1,4 +1,4 @@
 # github-actions-teste
 
 test beta
-test prerelease
+test prerelease + fix2

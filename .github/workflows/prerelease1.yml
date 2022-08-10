@@ -39,7 +39,8 @@ jobs:
         major_pattern: "break:"
         minor_pattern: "feat:"
         patch_pattern: "fix:"
-        format: "${major}.${minor}.${patch}-${{ steps.get-prerelease-suffix.outputs.prerelease_suffix }}${increment}"
+        # format: "${major}.${minor}.${patch}-${{ steps.get-prerelease-suffix.outputs.prerelease_suffix }}${increment}"
+        format: "${major}.${minor}.${patch}-${{ jobs.example_job.outputs.output1 }}${increment}"
         
     - name: Build Project and Generate Package
       run: dotnet build ${{ env.CAMINHO_PROJETO }} -c Release -p:PackageVersion=${{ steps.versioning.outputs.version }} -o ${{ env.DIR }}

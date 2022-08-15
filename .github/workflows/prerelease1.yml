@@ -28,7 +28,7 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               
-    - uses: actions/checkout@v3 # consulta actions
+    - name: action 
     - id: prerelease-suffix # identificação da ação para outputs
       uses: cadu1982/hello-action@v1 # referencia a action a ser usada
             

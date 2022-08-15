@@ -30,7 +30,7 @@ jobs:
               
     - name: action 
     - id: prerelease-suffix # identificação da ação para outputs
-      uses: cadu1982/hello-action@v1 # referencia a action a ser usada
+      uses: cadu1982/hello-action@v1 # referencia do repositorio onde contem a ação a ser reutilizada.
             
     - name: Semantic versioning
       id: versioning

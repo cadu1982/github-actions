@@ -12,12 +12,12 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("teste")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyDescriptionAttribute(" Biblioteca para conversão de distâncias em Milhas para Km (e vice-versa)")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("0.0.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.0.1")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute("Biblioteca para conversão de distâncias em Milhas para Km (e vice-versa)")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("2.0.7.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.0.7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Groffe.Distancias")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Groffe.Distancias")]
-[assembly: System.Reflection.AssemblyVersionAttribute("0.0.1.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("2.0.7.0")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/cadu1982/github-actions")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.
